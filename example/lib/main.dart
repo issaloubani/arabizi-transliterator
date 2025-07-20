@@ -1,4 +1,4 @@
-import 'package:arabizi/arabizi.dart';
+import 'package:arabizi_transliterator/arabizi.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -29,14 +29,19 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final TextEditingController _controller = TextEditingController();
-  String _translatedText = '';
+  String _fullTransliteration = '';
+  String _partialTransliteration = '';
+  List<String> _suggestions = [];
+  final ArabiziTransliterator _transliterator = ArabiziTransliterator();
 
   @override
   void initState() {
     super.initState();
     _controller.addListener(() {
       setState(() {
-        _translatedText = ArabiziTransliterator().transliterateFull(_controller.text);
+        _fullTransliteration = _transliterator.transliterateFull(_controller.text.trim());
+        _partialTransliteration = _transliterator.transliteratePartial(_controller.text.trim());
+        _suggestions = _transliterator.getSuggestions(_controller.text.trim());
       });
     });
   }
@@ -67,14 +72,43 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             const SizedBox(height: 20),
             const Text(
-              'Translated Arabic Text:',
+              'Full Transliteration:',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
             Text(
-              _translatedText,
+              _fullTransliteration,
               style: const TextStyle(fontSize: 24),
               textAlign: TextAlign.right,
+            ),
+            const SizedBox(height: 20),
+            const Text(
+              'Partial Transliteration:',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              _partialTransliteration,
+              style: const TextStyle(fontSize: 24),
+              textAlign: TextAlign.right,
+            ),
+            const SizedBox(height: 20),
+            const Text(
+              'Suggestions:',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
+            Expanded(
+              child: ListView.builder(
+                itemCount: _suggestions.length,
+                itemBuilder: (context, index) {
+                  return Text(
+                    _suggestions[index],
+                    style: const TextStyle(fontSize: 20),
+                    textAlign: TextAlign.right,
+                  );
+                },
+              ),
             ),
           ],
         ),
