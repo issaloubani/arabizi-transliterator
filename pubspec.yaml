@@ -1,7 +1,7 @@
 name: arabizi_transliterator
 description: "A Dart/Flutter package for transliterating Arabizi (Arabic chat alphabet) to Arabic script."
 version: 1.0.0
-homepage: https://github.com/your_username/arabizi_transliterator # Placeholder: Replace with actual homepage URL
+homepage: https://github.com/issaloubani/arabizi-transliterator
 publish_to: 'none' # Set to 'none' if not publishing to pub.dev, or remove for default
 
 environment:
