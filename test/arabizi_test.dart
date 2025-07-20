@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:arabizi/arabizi.dart';
+import 'package:arabizi/arabizi_transliterator.dart';
 
 void main() {
   group('ArabiziTranslator', () {

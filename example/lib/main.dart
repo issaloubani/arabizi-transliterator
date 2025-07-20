@@ -1,4 +1,4 @@
-import 'package:arabizi_transliterator/arabizi.dart';
+import 'package:arabizi_transliterator/arabizi_transliterator.dart';
 import 'package:flutter/material.dart';
 
 void main() {
