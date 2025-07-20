@@ -1,39 +1,98 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Arabizi Transliterator
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+A Dart/Flutter package for transliterating Arabizi (Arabic chat alphabet) to Arabic script. This library provides functionalities to convert Latin-based Arabizi text into its corresponding Arabic script, handling both multi-character and single-character transliterations, as well as providing dictionary-based suggestions.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+-   **Full Transliteration**: Convert Arabizi words to their full Arabic phonetic equivalent, handling special characters and multi-character combinations.
+-   **Partial Transliteration**: Convert only numbers and specific multi-character combinations, keeping other English letters intact. Useful for mixed-language texts.
+-   **Dictionary Suggestions**: Get Arabic word suggestions based on transliterated input, with options for full, partial, or prefix-stripped matching.
 
-## Getting started
+## Getting Started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+### Add the dependency
+
+Add `arabizi_transliterator` to your `pubspec.yaml` file:
+
+```yaml
+dependencies:
+  arabizi_transliterator: ^1.0.0 # Use the latest version
+```
+
+Then, run `flutter pub get` in your terminal.
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+Import the package in your Dart file:
 
 ```dart
-const like = 'sample';
+import 'package:arabizi_transliterator/arabizi_transliterator.dart';
 ```
 
-## Additional information
+Create an instance of the `ArabiziTransliterator`:
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+```dart
+final transliterator = ArabiziTransliterator();
+```
+
+### 1. Full Transliteration
+
+This method converts an Arabizi string to its full Arabic phonetic equivalent.
+
+```dart
+String arabiziText = "mar7aba";
+String arabicText = transliterator.transliterateFull(arabiziText);
+print(arabicText); // Output: مرحبا
+
+arabiziText = "shukran";
+arabicText = transliterator.transliterateFull(arabiziText);
+print(arabicText); // Output: شكراً
+
+arabiziText = "kifak";
+arabicText = transliterator.transliterateFull(arabiziText);
+print(arabicText); // Output: كيفك
+```
+
+### 2. Partial Transliteration
+
+This method converts only numbers and specific multi-character combinations, keeping other English letters intact.
+
+```dart
+String arabiziText = "ana b7ebbak";
+String arabicText = transliterator.transliteratePartial(arabiziText);
+print(arabicText); // Output: انا بحبك
+
+arabiziText = "hi 3am teshuf?";
+arabicText = transliterator.transliteratePartial(arabiziText);
+print(arabicText); // Output: hi عم تشوف؟
+```
+
+### 3. Getting Suggestions
+
+This method provides Arabic word suggestions from an internal dictionary based on the transliterated input. You can specify the `mode` for transliteration.
+
+-   `mode: 'full'` (full phonetic transliteration)
+-   `mode: 'partial'` (only numbers and special combos replaced)
+-   `mode: 'strip'` (default: full transliteration + prefix stripping)
+
+```dart
+// Using default 'strip' mode
+List<String> suggestions = transliterator.getSuggestions("sba7");
+print(suggestions); // Output: [صباح]
+
+// Using 'full' mode
+suggestions = transliterator.getSuggestions("kif", mode: 'full');
+print(suggestions); // Output: [كيفك]
+
+// Using 'partial' mode
+suggestions = transliterator.getSuggestions("ma3", mode: 'partial');
+print(suggestions); // Output: [مع]
+```
+
+## Examples
+
+For more detailed examples, please refer to the `example` folder in this repository.
+
+## Additional Information
+
+WAAW SO EMPTY, I will add some later ヾ(•ω•`)o
