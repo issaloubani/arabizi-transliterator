@@ -1,4 +1,5 @@
 # Arabizi Transliterator
+## Made with ❤️ by [@issaloubani](https://github.com/issaloubani) ヾ(≧▽≦*)o
 
 A Dart/Flutter package for transliterating Arabizi (Arabic chat alphabet) to Arabic script. This library provides functionalities to convert Latin-based Arabizi text into its corresponding Arabic script, handling both multi-character and single-character transliterations, as well as providing dictionary-based suggestions.
 
@@ -95,4 +96,6 @@ For more detailed examples, please refer to the `example` folder in this reposit
 
 ## Additional Information
 
-WAAW SO EMPTY, I will add some later ヾ(•ω•`)o
+Well you can always collaborate with me on this project. If you have something feel free to create a pull request or open an issue.
+
+Or fix it yourself, I am a README after all ㄟ( ▔, ▔ )ㄏ, blame issa not me ヽ(￣д￣;)ノ .
