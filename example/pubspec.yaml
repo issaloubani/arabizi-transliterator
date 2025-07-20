@@ -1,6 +1,5 @@
 name: arabizi_example
 description: "An example project demonstrating the usage of the arabizi transliterator plugin."
-publish_to: 'none'
 
 version: 1.0.0+1
 
